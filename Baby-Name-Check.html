@@ -1,0 +1,152 @@
+<html>
+  <head>
+        <title>Baby Name's Check</title>
+
+        <style>
+        	input {
+        		font-size: 18pt; 
+        	}
+
+        textarea{
+        	font-size: 18pt; 
+        }
+        	body { 
+      		font-size: 18pt; 
+   			}
+
+		table, th, td {
+   			border: 1px solid black;
+   			font-size: 18pt; 
+		}
+        </style>
+        <script language="javascript">
+
+    function sumDigits(value) {
+    //var value = document.getElementById("thenumber").value,
+        sum = 0;
+
+ 		 while (value) {
+      		sum += value % 10;
+      		value = Math.floor(value / 10);
+  		}
+  		return sum;
+	}
+    function addNumbers(str)
+    {
+    	var map = {} // or var map = {};
+		map['A'] = 1;
+		map['B'] = 2;
+		map['C'] = 3;
+		map['D'] = 4;
+		map['E'] = 5;
+		map['F'] = 8;
+		map['G'] = 3;
+		map['H'] = 5;
+		map['I'] = 1;
+		map['J'] = 1;
+		map['K'] = 2;
+		map['L'] = 3;
+		map['M'] = 4;
+		map['N'] = 5;
+		map['O'] = 7;
+		map['P'] = 8;
+		map['Q'] = 1;
+		map['R'] = 2;
+		map['S'] = 3;
+		map['T'] = 4;
+		map['U'] = 6;
+		map['V'] = 6;
+		map['W'] = 6;
+		map['X'] = 5;
+		map['Y'] = 1;
+		map['Z'] = 7;
+
+		var numstr = '';
+		var sumstr = 0;
+		for( var i =0 ;i < str.length ; i++)
+		{
+			var charValue = map[str.charAt(i)];
+			if( charValue === undefined)
+			{
+				numstr += ' ' 
+				continue;
+			}
+			numstr += charValue;
+			sumstr += parseInt(charValue);
+		}
+
+		var singleNum = sumstr
+		while(singleNum >9)
+		{
+			singleNum = sumDigits(singleNum)
+		}
+
+		/*alert('Name  	:'  + str + "\n" +
+			  'Nuber 	:'  + numstr + "\n" +
+			  'Sum   	:'  + sumstr + "\n" +
+			  'S sum 	:'  + singleNum)
+*/
+
+		var tableName = "Rejected"
+		if( singleNum == 6 || singleNum == 5)
+			tableName = "Accepted"
+
+		var myTable = document.getElementById(tableName);
+        var currentIndex = myTable.rows.length;
+        var currentRow = myTable.insertRow(-1);
+
+        var currentCell = currentRow.insertCell(-1);
+        currentCell.innerHTML = str;
+       
+        currentCell = currentRow.insertCell(-1);
+        currentCell.innerHTML = numstr;
+       
+        currentCell = currentRow.insertCell(-1);
+      	currentCell.innerHTML = sumstr;
+       
+        currentCell = currentRow.insertCell(-1);
+        currentCell.innerHTML = singleNum;
+       
+    }
+
+   function addField (argument) {
+   		var str = document.getElementById("babyname").value;
+        var res = str.toUpperCase();
+
+        
+        //alert('got new name '+ res);
+        addNumbers(res);
+
+    }
+        </script>
+  </head>
+  <body>
+        
+        Enter Name  :
+        <input type="text" name="babyname" style="font-size: 18pt; " id="babyname" />
+        <input type="button" class="button" value="Check Name" style="font-size: 18pt; " onclick="addField();"/>
+    	
+		<br/>
+
+		<table id="Accepted">
+			<caption>Accepted</caption>
+    	<tr>
+        	<th> Name </th>
+        	<th> Number </th>
+        	<th> Count </th>
+        	<th> Result </th>
+    	</tr>
+		</table>
+		<br />
+		<br />
+		<table id="Rejected" >
+			<caption>Rejected</caption>
+    	<tr>
+        	<th> Name </th>
+        	<th> Number </th>
+        	<th> Count </th>
+        	<th> Result </th>
+    	</tr>
+		</table>
+  </body>
+</html>
